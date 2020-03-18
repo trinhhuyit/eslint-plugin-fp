@@ -23,7 +23,10 @@ const endsWithReturnStatement = _.flow(
 );
 
 function reportFunctions(context, node) {
-  if (node.body.type === 'BlockStatement' &&
+  if (node.body.type === 'BlockStatement' && 
+    !node.body.type === 'SwitchStatement' &&
+    !node.body.type === 'IfStatement' &&
+    !node.body.type === 'TryStatement' &&
     !endsWithReturnStatement(node.body.body)
   ) {
     context.report({
